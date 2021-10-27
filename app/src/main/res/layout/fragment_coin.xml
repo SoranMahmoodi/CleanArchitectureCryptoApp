@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/tv_fragment_coin_rank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/black"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="125 -" />
+
+        <TextView
+            android:id="@+id/tv_fragment_coin_symbol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:textColor="@color/black"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_fragment_coin_rank"
+            app:layout_constraintStart_toEndOf="@+id/tv_fragment_coin_rank"
+            app:layout_constraintTop_toTopOf="@+id/tv_fragment_coin_rank"
+            tools:text="BTC" />
+
+        <TextView
+            android:id="@+id/tv_fragment_coin_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_fragment_coin_name_text"
+            app:layout_constraintStart_toEndOf="@+id/tv_fragment_coin_name_text"
+            app:layout_constraintTop_toTopOf="@+id/tv_fragment_coin_name_text"
+            tools:text="@string/app_name" />
+
+        <TextView
+            android:id="@+id/tv_fragment_coin_isActive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_fragment_coin_symbol"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_fragment_coin_symbol"
+            tools:text="active"
+            tools:textColor="@color/color_active" />
+
+        <TextView
+            android:id="@+id/tv_fragment_coin_name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Name : "
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/tv_fragment_coin_rank"
+            app:layout_constraintTop_toBottomOf="@+id/tv_fragment_coin_rank" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Description"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/tv_fragment_coin_name_text"
+            app:layout_constraintTop_toBottomOf="@+id/tv_fragment_coin_name_text" />
+
+
+        <TextView
+            android:id="@+id/tv_fragment_coin_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            tools:text="Tags " />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Tags "
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/tv_fragment_coin_description" />
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/cg_fragment_coin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/tv_fragment_coin_teams"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Teams"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/cg_fragment_coin"
+            app:layout_constraintTop_toBottomOf="@+id/cg_fragment_coin" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_fragment_coin_teams"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_fragment_coin_teams"
+            app:layout_constraintTop_toBottomOf="@+id/tv_fragment_coin_teams" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
