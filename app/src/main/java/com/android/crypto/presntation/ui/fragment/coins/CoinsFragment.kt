@@ -1,7 +1,6 @@
 package com.android.crypto.presntation.ui.fragment.coins
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.crypto.R
 import com.android.crypto.databinding.FragmentCoinsBinding
-import com.android.crypto.domain.utils.OnClickItemCrypto
+import com.android.crypto.presntation.utils.OnClickItemCrypto
 import com.android.crypto.presntation.adapter.CryptoAdapter
 import com.android.crypto.presntation.ui.fragment.coin.CoinFragment
 import dagger.hilt.android.AndroidEntryPoint

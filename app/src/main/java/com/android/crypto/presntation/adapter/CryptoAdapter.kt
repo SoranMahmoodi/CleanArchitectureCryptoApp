@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.crypto.R
 import com.android.crypto.databinding.ItemCryptoBinding
 import com.android.crypto.domain.entites.CoinsEntity
-import com.android.crypto.domain.utils.OnClickItemCrypto
+import com.android.crypto.presntation.utils.OnClickItemCrypto
 
 class CryptoAdapter(private val onClickItemCrypto: OnClickItemCrypto): ListAdapter<CoinsEntity,CryptoAdapter.CryptoViewHolder>(Companion) {
 

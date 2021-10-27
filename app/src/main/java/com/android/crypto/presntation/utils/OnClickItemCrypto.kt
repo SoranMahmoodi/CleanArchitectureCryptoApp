@@ -1,4 +1,4 @@
-package com.android.crypto.domain.utils
+package com.android.crypto.presntation.utils
 
 interface OnClickItemCrypto {
     fun onItemClick(coinId:String)
