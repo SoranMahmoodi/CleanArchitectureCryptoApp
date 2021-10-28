@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.flowWithLifecycle
@@ -20,9 +21,9 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
-class CoinsFragment : Fragment() , OnClickItemCrypto {
+class CoinsFragment : Fragment(), OnClickItemCrypto {
 
-    private lateinit var viewModel: CoinsViewModel
+    private val viewModel: CoinsViewModel by viewModels()
 
     private var binding: FragmentCoinsBinding? = null
 
@@ -31,7 +32,6 @@ class CoinsFragment : Fragment() , OnClickItemCrypto {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         cryptoAdapter = CryptoAdapter(this)
-
     }
 
     override fun onCreateView(
@@ -45,7 +45,6 @@ class CoinsFragment : Fragment() , OnClickItemCrypto {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(requireActivity())[CoinsViewModel::class.java]
         setupViews()
         getCoins()
     }
@@ -63,13 +62,16 @@ class CoinsFragment : Fragment() , OnClickItemCrypto {
         }.launchIn(lifecycleScope)
     }
 
+    private fun passCoinIdInCoinFragment(coinId: String) = CoinFragment()
+        .apply {
+            arguments = Bundle().apply {
+                putString("coinId", coinId)
+            }
+        }
+
     override fun onItemClick(coinId: String) {
-        val coinFragment = CoinFragment()
-        val bundle = Bundle()
-        bundle.putString("coinId",coinId)
-        coinFragment.arguments = bundle
         val fragment = requireActivity().supportFragmentManager.beginTransaction()
-        fragment.replace(R.id.fragment_container_main,coinFragment)
+        fragment.replace(R.id.fragment_container_main, passCoinIdInCoinFragment(coinId))
         fragment.addToBackStack(null)
         fragment.commit()
     }

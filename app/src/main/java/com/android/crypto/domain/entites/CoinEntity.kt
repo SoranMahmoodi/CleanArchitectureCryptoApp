@@ -20,8 +20,8 @@ data class CoinEntity(
     val rank: Int,
     val started_at: String,
     val symbol: String,
-    val tags: List<Tag>,
-    val team: List<Team>,
+    val tags: List<Tag> ? = null,
+    val team: List<Team> ? =  null,
     val type: String,
     val whitepaper: Whitepaper
 )

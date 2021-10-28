@@ -21,7 +21,6 @@ class TeamAdapter : ListAdapter<Team, TeamAdapter.TeamViewHolder>(Companion) {
 
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeamViewHolder {
         return TeamViewHolder(
             ItemTeamsBinding.inflate(

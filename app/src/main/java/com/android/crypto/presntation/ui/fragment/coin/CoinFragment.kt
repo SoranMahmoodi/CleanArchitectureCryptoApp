@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.flowWithLifecycle
@@ -29,12 +30,13 @@ import kotlinx.coroutines.flow.onEach
 @AndroidEntryPoint
 class CoinFragment : Fragment() {
 
-    private lateinit var viewModel: CoinViewModel
+    private  val viewModel: CoinViewModel by viewModels()
+
     private var binding: FragmentCoinBinding? = null
 
     private var coinId: String? = null
 
-    private lateinit var teamsAdapter : TeamAdapter
+    private lateinit var teamsAdapter: TeamAdapter
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -53,17 +55,15 @@ class CoinFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(requireActivity())[CoinViewModel::class.java]
         getCoin()
         setupViews()
     }
 
     private fun setupViews() {
         teamsAdapter = TeamAdapter()
-
-        binding!!.rvFragmentCoinTeams.apply {
+        binding?.rvFragmentCoinTeams?.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter =teamsAdapter
+            adapter = teamsAdapter
         }
     }
 
@@ -72,41 +72,47 @@ class CoinFragment : Fragment() {
             viewModel.getCoin(it)
         }
         viewModel.coin.flowWithLifecycle(lifecycle, Lifecycle.State.RESUMED).onEach {
-            Log.i("CoinFra", "getCoin: $it")
             setupInfoCoin(it)
-            it.tags?.let {
-                setupChip(it)
-
+            it.tags?.let { tags ->
+                setupChip(tags)
             }
-            it.team?.let{
-                teamsAdapter.submitList(it)
+            it.team?.let { teams ->
+                teamsAdapter.submitList(teams)
             }
         }.launchIn(lifecycleScope)
     }
 
     private fun setupInfoCoin(coinEntity: CoinEntity) {
-        binding!!.tvFragmentCoinRank.text = "${coinEntity.rank} -"
-        binding!!.tvFragmentCoinSymbol.text = coinEntity.symbol
-        binding!!.tvFragmentCoinDescription.text = coinEntity.description
-        binding!!.tvFragmentCoinName.text = coinEntity.name
-        if (coinEntity.is_active) {
-            binding!!.tvFragmentCoinIsActive.text = "active"
-            binding!!.tvFragmentCoinIsActive.setTextColor(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.color_active
-                )
-            )
+        binding?.let {
+            it.tvFragmentCoinRank.text = "${coinEntity.rank} - "
+            it.tvFragmentCoinSymbol.text = coinEntity.symbol
+            it.tvFragmentCoinDescription.text = coinEntity.description
+            isActiveCoin(coinEntity)
+        }
 
-        } else {
-            binding!!.tvFragmentCoinIsActive.text = "inactive"
-            binding!!.tvFragmentCoinIsActive.setTextColor(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.color_inactive
-                )
-            )
+    }
 
+    private fun isActiveCoin(coinEntity: CoinEntity) {
+        binding?.let {
+            it.tvFragmentCoinName.text = coinEntity.name
+            if (coinEntity.is_active) {
+                it.tvFragmentCoinIsActive.text = "active"
+                it.tvFragmentCoinIsActive.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.color_active
+                    )
+                )
+
+            } else {
+                it.tvFragmentCoinIsActive.text = "inactive"
+                it.tvFragmentCoinIsActive.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.color_inactive
+                    )
+                )
+            }
         }
     }
 
