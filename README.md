@@ -1,4 +1,9 @@
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
 # CleanArchitectureCryptoApp
+
+# Description
+Hi, this is the first project I did with CleanArchitectureMvvm and it is basic and not too complicated. I hope it will be useful for other friends as well.
 
  # Technologies
  - Android Clean MVVM architecture 
